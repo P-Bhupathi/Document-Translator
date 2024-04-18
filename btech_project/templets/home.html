@@ -1,0 +1,71 @@
+<html>
+    <head>
+        <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    </head>
+    <body>
+        <div id="top">
+            <input type="text" id="search" placeholder="  🔎︎ Search....">
+            <form id="form">
+            
+                <br>{% csrf_token %}
+            
+                <input type="file" name="file_data" required>
+                <input type="submit" value="UPLOAD">
+            
+            </form>
+            <div id="top_right">
+                
+                        👤<p id="user_id">{{user_name}}</p> 
+                   
+                    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                    <a href="/logout/">logout</a>
+            </div>
+            
+            
+        </div>
+        <!-- <div class="load"></div>
+        <div class="check"></div> -->
+        {% for i in books %}
+            <div class="set" id="{{i.name}}" onmouseleave="sidelist_exit(this.id+'_name_list')">
+               <div>
+               <p  id="{{i.name}}_name" class="names" onmouseenter="sidelist_display(this.id)" onmouseleave="sidelist_undisplay(this.id)">&nbsp&nbsp{{i.name}}</p>
+               <ul id="{{i.name}}_ul">
+               {% for k,v in i.translated.items %}
+                    {% if v != '!t' %}
+                       <li id="{{i.name}}_{{k}}_list" class="download_list" data-hidden-value="{{v}}">{{i.name}}_{{k}} - <a href= "{% url 'download' i.path i.name k %}">⇩</a>&nbsp&nbsp&nbsp
+                            {% if k != 'original'  %}
+                               <button onclick="delete_by_id('{{i.name}}','{{k}}')">❌</button>
+                            {% else %}
+                            <button onclick="delete_by_id('{{i.name}}','{{k}}')">Delete permanently</button>
+                            {% endif %}
+                        </li>
+                    {% endif %}
+               {% endfor %}
+               </ul>
+               </div>
+               <ul id="{{i.name}}_name_list" onmouseleave="sidelist_exit(this.id)" class="sub_list">
+                  {% for y,z in i.translated.items %}
+                    {% if z == '!t' %}
+                       <li class="list" id="{{i.name}}_{{y}}_to_translate">{{i.name}}_{{y}}&nbsp<button id="{{i.name}}_{{y}}" class="translate_buttons">↺</button></li>
+                    {% endif %}
+                  {% endfor %}
+               </ul>
+            </div>
+            <br>
+        {% endfor %}
+        <div id="overlay">
+            <div id="loading-spinner"></div>
+        </div>
+        <style>
+            {% include  'css\main.css' %}
+        </style>
+        <script>
+            document.addEventListener("DOMContentLoaded",function(){
+              
+                {% include 'js\main.js' %}
+                
+            })
+            
+        </script>
+    </body>
+</html>

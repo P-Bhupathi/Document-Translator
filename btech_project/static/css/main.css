@@ -1,0 +1,131 @@
+.check {
+    display: inline-block;
+    transform: rotate(45deg);
+    height: 50px;
+    width: 20px;
+    border-bottom: 20px solid green;
+    border-right: 20px solid green;
+    display: none;
+  }
+@keyframes rotate {
+    from {
+        transform: rotate(0deg);
+    }
+    to { 
+        transform: rotate(360deg);
+    }
+}
+ 
+#top{
+    display: flex;
+    justify-content: space-around;
+}
+#search{
+    height: 40px;
+}
+ @-webkit-keyframes rotate { 
+    from {
+        -webkit-transform: rotate(0deg);
+    }
+    to { 
+        -webkit-transform: rotate(360deg);
+    }
+}
+
+.load {
+    width: 40px;
+    height: 40px;
+    margin: 110px auto 0;
+    border:solid 5px #8822aa;
+    border-radius: 50%;
+    border-right-color: transparent;
+    border-bottom-color: transparent;
+     -webkit-transition: all 0.5s ease-in;
+    -webkit-animation-name:             rotate; 
+    -webkit-animation-duration:         1.0s; 
+    -webkit-animation-iteration-count:  infinite;
+    -webkit-animation-timing-function: linear;
+        
+         transition: all 0.5s ease-in;
+    animation-name:             rotate; 
+    animation-duration:         1.0s; 
+    animation-iteration-count:  infinite;
+    animation-timing-function: linear; 
+    display:none;
+}
+
+.set{
+    border: 1px solid;
+    border-color: black;
+    border-radius: 4px;
+    max-height: fit-content;
+    box-sizing: content-box;
+    display: flex;
+    justify-content: flex-start;
+    background-color: aliceblue;
+    
+}
+
+.names:hover{
+    cursor: pointer;
+}
+.sub_list{
+    display: none;
+}
+.sub_list {
+    display: none;
+    position: relative;
+    top: 0vh;
+    left: 250px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    padding: 5px;
+    z-index: 0;
+    overflow: auto;
+    max-height: 100px;
+    transform: translateY(0px);
+    transform: translateX(-70px);
+    
+}
+
+/* Styles for the overlay */
+#overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+/* Styles for the loading spinner */
+#loading-spinner {
+    border: 8px solid #f3f3f3;
+    border-top: 8px solid #3498db;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+#top_right{
+    display: flex;
+    flex-direction: row;
+    transform: translatey(12px);
+}
+
+#user_id{
+    transform: translatey(-12px);
+}
+#form{
+    transform: translateY(-8px);
+}
